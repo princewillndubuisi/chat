@@ -119,7 +119,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="index.html" title="Home" data-toggle="tooltip">
+					<a href="index.html" title="Dashboard" data-toggle="tooltip">
 						<i>
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></i>
 					</a>
@@ -176,7 +176,7 @@
 				</a>
 				<ul class="submenu">
 					<li><a href="index.html" title="">Newsfeed</a></li>
-					<li><a href="company-home.html" title="">Company Home</a></li>
+					<li><a href="company-home.html" title="">Company Dashboard</a></li>
 					<li><a href="profile-page2.html" title="">User Profile</a></li>
 					<li><a href="profile.html" title="">Student User Profile</a></li>
 					<li><a href="groups.html" title="">Groups</a></li>
@@ -365,7 +365,7 @@
 							</div>
 							<div class="col-lg-6">
 								<ul class="filtr-tabs">
-									<li><a class="active" href="#" title="">Home</a></li>
+									<li><a class="active" href="#" title="">Dashboard</a></li>
 									<li><a href="#" title="">Recent</a></li>
 									<li><a href="#" title="">Favourit</a></li>
 								</ul><!-- tab buttons -->
