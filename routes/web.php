@@ -12,9 +12,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+//User Routes
+require __DIR__ . '/user.php';
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('authuser.register');
 });
 
 Route::middleware([

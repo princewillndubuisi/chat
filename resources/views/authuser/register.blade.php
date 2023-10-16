@@ -37,27 +37,46 @@
 	<div class="auth-login">
 		<div class="verticle-center">
 			<div class="signup-form">
-				<h4><i class="icofont-lock"></i> Singup</h4>
-				<form method="post" class="c-form">
+				<h4><i class="icofont-lock"></i> Sign up</h4>
+				<form action="{{route('doregister')}}" method="POST" class="c-form">
+                    @csrf
 					<div class="row merged-10">
 						<div class="col-lg-12"><h4>What type of researcher are you?</h4></div>
 						<div class="col-lg-6 col-sm-6 col-md-6">
 							<input type="text" name="firstname" value="{{old('firstname')}}" placeholder="First Name">
+                            @error('firstname')
+                                <small class="text-danger">{{$message}}</small>
+                            @enderror
 						</div>
 						<div class="col-lg-6 col-sm-6 col-md-6">
 							<input type="text" name="lastname" value="{{old('lastname')}}" placeholder="Last Name">
-						</div>
-                        <div class="col-lg-6 col-sm-6 col-md-6">
-							<input type="text" name="username" value="{{old('username')}}" placeholder="User Name">
-						</div>
-                        <div class="col-lg-6 col-sm-6 col-md-6">
-							<input type="tel" name="phone" value="{{old('phone')}}" placeholder="Phone Number">
+                            @error('lastname')
+                                <small class="text-danger">{{$message}}</small>
+                            @enderror
 						</div>
 						<div class="col-lg-6 col-sm-6 col-md-6">
-							<input type="text" name="email" value="{{old('email')}}" placeholder="Email@">
+							<input type="text" name="username" value="{{old('username')}}" placeholder="Username">
+                            @error('username')
+                                <small class="text-danger">{{$message}}</small>
+                            @enderror
+						</div>
+						<div class="col-lg-6 col-sm-6 col-md-6">
+							<input type="tel" name="phone" value="{{old('phone')}}" placeholder="Phone Number">
+                            @error('phone')
+                                <small class="text-danger">{{$message}}</small>
+                            @enderror
+						</div>
+						<div class="col-lg-6 col-sm-6 col-md-6">
+							<input type="email" name="email" value="{{old('email')}}" placeholder="Email@">
+                            @error('email')
+                                <small class="text-danger">{{$message}}</small>
+                            @enderror
 						</div>
 						<div class="col-lg-6 col-sm-6 col-md-6">
 							<input type="password" name="password" value="{{old('password')}}" placeholder="Password">
+                            @error('password')
+                                <small class="text-danger">{{$message}}</small>
+                            @enderror
 						</div>
 						<div class="col-lg-12">
 							<div class="gender">
