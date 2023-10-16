@@ -21,7 +21,7 @@ Route::middleware(['auth'])->group( function () {
     });
 
     Route::controller(AuthController::class)->middleware(['verifyemail'])->group( function () {
-        Route::get('userdashboard', 'dashboard')->name('user-dashboard');
+        Route::get('user-dashboard', 'dashboard')->name('user-dashboard');
         Route::get('profile', 'profile')->name('user-profile');
         Route::get('chat', 'chat')->name('user-chat');
     });
