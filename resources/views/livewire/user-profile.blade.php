@@ -9,8 +9,8 @@
 							<div class="university-tag">
 								<figure><img src="images/resources/user.jpg" alt=""></figure>
 								<div class="uni-name">
-									<h4>{{Auth::user()->firstname}} {{Auth::user()->lastname}}</h4>
-									<span>{{Auth::user()->email}}</span>
+									<h4>{{Auth::user()->firstname}} {{Auth::user()->firstname}} </h4>
+									<span>{{'@'}}{{Auth::user()->username}}</span>
 								</div>
 								<ul class="sharing-options">
 									<li><a title="Invite Colleagues" href="#" data-toggle="tooltip"><i class="icofont-id-card"></i></a> </li>
