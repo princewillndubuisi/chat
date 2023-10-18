@@ -84,7 +84,7 @@
                     <a href="profile-page2.html" title="">
                         <img alt="" src="images/resources/user.jpg">
                         <div class="name">
-                            <h4>Danial Cardos</h4>
+                            <h4>{{Auth::user()->firstname}} {{Auth::user()->lastname}}</h4>
                         </div>
                     </a>
                 </div>
@@ -130,7 +130,7 @@
                 <ul class="dropdown">
                     <li><a href="profile.html" title=""><i class="icofont-user-alt-3"></i> Your Profile</a></li>
                     <li><a class="dark-mod" href="#" title=""><i class="icofont-moon"></i> Dark Mode</a></li>
-                    <li class="logout"><a href="sign-in.html" title=""><i class="icofont-power"></i> Logout</a></li>
+                    <li class="logout"><a href="{{route('logout')}}" title=""><i class="icofont-power"></i> Logout</a></li>
                 </ul>
             </li>
         </ul>

@@ -10,6 +10,9 @@ Route::controller(UsersController::class)->group(function () {
     Route::post('register', 'doregister')->name('doregister');
     Route::get('login', 'login')->name('login');
     Route::post('login', 'dologin')->name('dologin');
+    Route::get('forgotpassword', 'forgot')->name('forgot');
+    Route::get('verifypassword', 'verifypassword')->name('verifypassword');
+    // Route::post('forgotpassword', 'doforgot')->name('doforgot');
 });
 
 
@@ -18,10 +21,12 @@ Route::middleware(['auth'])->group( function () {
         Route::get('verifyemail', 'verifyemail')->name('verifyemail');
         Route::get('resend/verificationmail', 'resendmail')->name('send.verify.mail');
         Route::post('verificationemail', 'confirmemail')->name('email.confirm');
+        Route::get('logout', 'logout')->name('logout');
+
     });
 
     Route::controller(AuthController::class)->middleware(['verifyemail'])->group( function () {
-        Route::get('userdashboard', 'dashboard')->name('user-dashboard');
+        Route::get('user-dashboard', 'dashboard')->name('user-dashboard');
         Route::get('profile', 'profile')->name('user-profile');
         Route::get('chat', 'chat')->name('user-chat');
     });

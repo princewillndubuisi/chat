@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Users;
 
-use App\Http\Controllers\Controller;
-use App\Mail\VerificationEmail;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Mail\VerifyMail;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Mail\VerificationEmail;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\RedirectResponse;
 
 class AuthController extends Controller
 {
@@ -49,6 +50,17 @@ class AuthController extends Controller
 
         }
 
+    }
+
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('login');
     }
 
     public function profile() {

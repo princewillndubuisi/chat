@@ -9,8 +9,8 @@
 							<div class="university-tag">
 								<figure><img src="images/resources/user.jpg" alt=""></figure>
 								<div class="uni-name">
-									<h4>Georg Peeter </h4>
-									<span>@Georgofficial</span>
+									<h4>{{Auth::user()->firstname}} {{Auth::user()->lastname}}</h4>
+									<span>{{Auth::user()->email}}</span>
 								</div>
 								<ul class="sharing-options">
 									<li><a title="Invite Colleagues" href="#" data-toggle="tooltip"><i class="icofont-id-card"></i></a> </li>
@@ -1819,7 +1819,7 @@
 									</div>
 								  	<div class="tab-pane fade " id="about">
 										<div class="main-wraper">
-											<h3 class="main-title">About Engin</h3>
+											<h3 class="main-title">About {{Auth::user()->firstname}} {{Auth::user()->lastname}}</h3>
 											<div class="lang">
 												<h6>Languages</h6>
 												<span>English, Turkish</span>
@@ -1876,95 +1876,10 @@
 												<img src="images/resources/uni4.jpg" alt="">
 											</div>
 										</div>
-										<div class="main-wraper">
-											<h3 class="main-title">Researches Image & PDF</h3>
-											<div class="row merged-10">
-												<div class="col-lg-4">
-													<figure class="research-avatar">
-														<a class="uk-inline" href="images/resources/image1.jpg" data-fancybox="">
-															<img src="images/resources/image1.jpg" alt="">
-														</a>
-													</figure>
-												</div>
-												<div class="col-lg-4">
-													<figure class="research-avatar">
-														<a class="uk-inline" href="images/resources/image1.jpg" data-fancybox="">
-															<img src="images/resources/image2.jpg" alt="">
-														</a>
-													</figure>
-												</div>
-												<div class="col-lg-4">
-													<figure class="research-avatar">
-														<a class="uk-inline" href="images/resources/image1.jpg" data-fancybox="">
-															<img src="images/resources/image3.jpg" alt="">
-														</a>
-													</figure>
-												</div>
-												<div class="col-lg-4">
-													<figure class="research-avatar">
-														<a class="uk-inline" href="images/resources/image1.jpg" data-fancybox="">
-															<img src="images/resources/image4.jpg" alt="">
-														</a>
-													</figure>
-												</div>
-												<div class="col-lg-4">
-													<figure class="research-avatar">
-														<a class="uk-inline" href="images/resources/image1.jpg" data-fancybox="">
-															<img src="images/resources/image5.jpg" alt="">
-														</a>
-													</figure>
-												</div>
-												<div class="col-lg-4">
-													<figure class="research-avatar">
-														<a class="uk-inline" href="images/resources/image1.jpg" data-fancybox="">
-															<img src="images/resources/image6.jpg" alt="">
-														</a>
-													</figure>
-												</div>
-											</div>
-										</div>
 
 									</div>
 								</div>
-								<div class="main-wraper">
-									<div class="user-post">
-										<div class="friend-info">
-											<figure>
-												<i class="icofont-learn"></i>
-											</figure>
-											<div class="friend-name">
-												<ins><a title="" href="time-line.html">Suggested</a></ins>
-												<span><i class="icofont-runner-alt-1"></i> Follow similar Research People</span>
-											</div>
-											<ul class="suggested-caro">
-												<li>
-													<figure><img src="images/resources/speak-1.jpg" alt=""></figure>
-													<span>Amy Watson</span>
-													<ins>Department of Socilolgy</ins>
-													<a href="#" title="" data-ripple=""><i class="icofont-star"></i> Follow</a>
-												</li>
-												<li>
-													<figure><img src="images/resources/speak-2.jpg" alt=""></figure>
-													<span>Muhammad Khan</span>
-													<ins>Department of Socilolgy</ins>
-													<a href="#" title="" data-ripple=""><i class="icofont-star"></i> Follow</a>
-												</li>
-												<li>
-													<figure><img src="images/resources/speak-3.jpg" alt=""></figure>
-													<span>Sadia Gill</span>
-													<ins>Department of Socilolgy</ins>
-													<a href="#" title="" data-ripple=""><i class="icofont-star"></i> Follow</a>
-												</li>
-												<li>
-													<figure><img src="images/resources/speak-4.jpg" alt=""></figure>
-													<span>Aykash verma</span>
-													<ins>Department of Socilolgy</ins>
-													<a href="#" title="" data-ripple=""><i class="icofont-star"></i> Follow</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div><!-- suggested friends -->
+
 							</div>
 							<div class="col-lg-4">
 								<aside class="sidebar static right">
