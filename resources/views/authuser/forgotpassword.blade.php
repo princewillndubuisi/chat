@@ -50,7 +50,7 @@
 		</ul>
 	</div>
 	<div class="auth-login">
-        @if (Session::has('success'))
+        {{-- @if (Session::has('success'))
         <div class="alert alert-success alert-dismissible fade show m-3" role="alert">
             <strong>Success!</strong> {{Session('success')}}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -69,17 +69,16 @@
             <strong>Error!</strong> {{$message}}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        @enderror
+        @enderror --}}
 		<div class="logo"><img src="images/logo.png" alt=""><span>Socimo</span></div>
 		<div class="mockup left-bottom"><img src="images/mockup.png" alt=""></div>
 		<div class="verticle-center">
 			<div class="login-form">
-				<h4><i class="icofont-key-hole"></i> Login</h4>
-				<form method="POST" action="{{route('dologin')}}" class="c-form">
+				<h4><i class="icofont-key-hole"></i> Forgot Password</h4>
+				<form method="POST" action="" class="c-form">
                     @csrf
-					<input type="text" name="email" placeholder="Example@">
-					<input type="password" name="password" placeholder="xxxxxxxxxx">
-                    <a href="{{route('verifypassword')}}" class="text-primary">Forgot password?</a>
+					<input type="password" name="password" placeholder="New Password">
+					<input type="password" name="password_confirmation" placeholder="Confirm Password">
 					<div class="checkbox">
 						<input type="checkbox" id="checkbox" checked>
 						<label for="checkbox"><span>Remember Me</span></label>

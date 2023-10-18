@@ -50,44 +50,28 @@
 		</ul>
 	</div>
 	<div class="auth-login">
-        @if (Session::has('success'))
-        <div class="alert alert-success alert-dismissible fade show m-3" role="alert">
-            <strong>Success!</strong> {{Session('success')}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @endif
-
-        @if(Request::has('error'))
-        <div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
-            <strong>Error!</strong> {{Request('Error')}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @endif
-
-        @error('email')
-        <div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
-            <strong>Error!</strong> {{$message}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @enderror
 		<div class="logo"><img src="images/logo.png" alt=""><span>Socimo</span></div>
 		<div class="mockup left-bottom"><img src="images/mockup.png" alt=""></div>
-		<div class="verticle-center">
-			<div class="login-form">
-				<h4><i class="icofont-key-hole"></i> Login</h4>
-				<form method="POST" action="{{route('dologin')}}" class="c-form">
+        <div class="card mt-5 text-center">
+            <p class="text-success">Thank you for signing up! Please verify your email </p>
+            <p class="text-success">A 6-digit code has been sent to {{Auth::user()->email}}. Please check!</p>
+            <div class="col-6 mx-auto">
+                <form action="{{route('verifypassword')}}" method="post">
                     @csrf
-					<input type="text" name="email" placeholder="Example@">
-					<input type="password" name="password" placeholder="xxxxxxxxxx">
-                    <a href="{{route('verifypassword')}}" class="text-primary">Forgot password?</a>
-					<div class="checkbox">
-						<input type="checkbox" id="checkbox" checked>
-						<label for="checkbox"><span>Remember Me</span></label>
-					</div>
-					<button class="main-btn" type="submit"><i class="icofont-key"></i> Login</button>
-				</form>
-			</div>
-		</div>
+                <div class="form-group mt-3 mb-3">
+                    <label for="code" class="form-label">Verification Code</label>
+                    <input type="text" name="code" id="code" class="form-control" required>
+                    @error('Invalid')
+                        <small class="text-danger">{{$message}}</small>
+                    @enderror
+                </div>
+                <div class="d-grid">
+                    <a href="{{route('email.confirm')}}" class="btn btn-primary" type="submit">Verify</a>
+                </div>
+                </form>
+            </div>
+            <p class="text-center">Did not receive code? <a href="{{route('send.verify.mail')}}">Resend</a></p>
+        </div>
 		<div class="mockup right"><img src="images/star-shape.png" alt=""></div>
 	</div>
 

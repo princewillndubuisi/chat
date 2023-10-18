@@ -71,5 +71,35 @@ class UsersController extends Controller
         ])->onlyInput('email');
     }
 
+    public function verifypassword() {
+        $code = Str::random(6);
+
+        $user = User::find('email');
+        $user->verification_code = $code;
+        $user->update();
+
+        $name = Auth::user()->firstname . " ". Auth::user()->lastname . " ". Auth::user()->othername;
+
+        Mail::to(Auth::user()->email)->send(new VerificationEmail($name, $code, Auth::user()->email));
+
+        return view('verifypassword');
+    }
+
+    public function forgot() {
+        return view('authuser.forgotpassword');
+    }
+
+
+    // public function doforgot(Request $request) {
+    //     $newpassword = $request->validate([
+    //         'password' => 'required|min:8'
+    //     ]);
+
+    //     $new = new User();
+
+    //     $new->password = $request->password;
+
+    //     return redirect()->route('login')->with('success', 'New Password Created Successfully, Please Login to Continue');
+    // }
 }
 
