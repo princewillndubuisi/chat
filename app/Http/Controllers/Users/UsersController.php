@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Users;
 
+use Carbon\Carbon;
 use App\Models\User;
+use App\Mail\VerifyMail;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Mail\VerificationEmail;
-use App\Mail\VerifyMail;
+use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -71,24 +72,46 @@ class UsersController extends Controller
         ])->onlyInput('email');
     }
 
-    public function verifypassword() {
+    public function password() {
+        return view('authuser.password');
+    }
+
+
+    public function verifypassword( Request $request) {
+        $validated = $request->validate([
+            'email' => 'required|email'
+        ]);
+
         $code = Str::random(6);
 
-        $user = User::find('email');
-        $user->verification_code = $code;
-        $user->update();
+        // Check if a user with the given email already exists
+        $user = User::where('email', $request->email)->first();
 
-        $name = Auth::user()->firstname . " ". Auth::user()->lastname . " ". Auth::user()->othername;
+        if ($user) {
+            // Update the existing user's verification_code
+            $user->verification_code = $code;
+        } else {
+            // Create a new user if they don't exist
+            $user = new User();
+            $user->email = $request->email;
+            $user->verification_code = $code;
+            return 'user not found';
+        }
 
-        Mail::to(Auth::user()->email)->send(new VerificationEmail($name, $code, Auth::user()->email));
 
-        return view('verifypassword');
+        $user->save();
+
+        $name = $request->firstname . " " . $request->lastname;
+
+        // Send an email with the verification code
+        Mail::to($user->email)->send(new VerificationEmail($name, $code, $user->email));
+
+        return view('authuser.verifypassword', ['user' => $user])->with('success', 'Registration Successful, Please Login to Continue');
     }
 
     public function forgot() {
         return view('authuser.forgotpassword');
     }
-
 
     // public function doforgot(Request $request) {
     //     $newpassword = $request->validate([

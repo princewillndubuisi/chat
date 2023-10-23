@@ -50,28 +50,40 @@
 		</ul>
 	</div>
 	<div class="auth-login">
+        {{-- @if (Session::has('success'))
+        <div class="alert alert-success alert-dismissible fade show m-3" role="alert">
+            <strong>Success!</strong> {{Session('success')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
+
+        @if(Request::has('error'))
+        <div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
+            <strong>Error!</strong> {{Request('Error')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
+
+        @error('email')
+        <div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
+            <strong>Error!</strong> {{$message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @enderror --}}
 		<div class="logo"><img src="images/logo.png" alt=""><span>Socimo</span></div>
 		<div class="mockup left-bottom"><img src="images/mockup.png" alt=""></div>
-        <div class="card mt-5 text-center">
-            <p class="text-success">Thank you for signing up! Please verify your email </p>
-            <p class="text-success">A 6-digit code has been sent to {{Auth::user()->email }}. Please check!</p>
-            <div class="col-6 mx-auto">
-                <form action="{{route('email.confirm')}}" method="post">
+		<div class="verticle-center">
+			<div class="login-form">
+				<h4><i class="icofont-key-hole"></i>Enter Email</h4>
+				<form method="POST" action="{{route('confirmemail')}}" class="c-form">
                     @csrf
-                <div class="form-group mt-3 mb-3">
-                    <label for="code" class="form-label">Verification Code</label>
-                    <input type="text" name="code" id="code" class="form-control" required>
-                    @error('code')
-                        <small class="text-danger">{{$message}}</small>
-                    @enderror
-                </div>
-                <div class="d-grid">
-                    <button class="btn btn-primary" type="submit">Verify</button>
-                </div>
-                </form>
-            </div>
-            <p class="text-center">Did not receive code? <a href="{{route('send.verify.mail')}}" class="text-primary">Resend</a></p>
-        </div>
+                    <label for="">Confirm Email</label>
+					<input type="email" name="email" placeholder="Example@">
+
+					<button class="btn btn-primary d-flex justify-content-center mt-3" type="submit"><i class="icofont-key"></i> Verify</button>
+				</form>
+			</div>
+		</div>
 		<div class="mockup right"><img src="images/star-shape.png" alt=""></div>
 	</div>
 

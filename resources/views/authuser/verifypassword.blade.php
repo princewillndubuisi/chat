@@ -52,25 +52,25 @@
 	<div class="auth-login">
 		<div class="logo"><img src="images/logo.png" alt=""><span>Socimo</span></div>
 		<div class="mockup left-bottom"><img src="images/mockup.png" alt=""></div>
-        <div class="card mt-5 text-center">
-            <p class="text-success">Thank you for signing up! Please verify your email </p>
-            <p class="text-success">A 6-digit code has been sent to {{Auth::user()->email}}. Please check!</p>
+        <div class="card shadow mt-5 text-center">
+            <p class="text-success">Please verify your email </p>
+            <p class="text-success">A 6-digit code has been sent to {{$user->email}}. Please check!</p>
             <div class="col-6 mx-auto">
-                <form action="{{route('verifypassword')}}" method="post">
+                <form action="{{route('confirmpassword')}}" method="POST">
                     @csrf
-                <div class="form-group mt-3 mb-3">
-                    <label for="code" class="form-label">Verification Code</label>
-                    <input type="text" name="code" id="code" class="form-control" required>
-                    @error('Invalid')
-                        <small class="text-danger">{{$message}}</small>
-                    @enderror
-                </div>
-                <div class="d-grid">
-                    <a href="{{route('email.confirm')}}" class="btn btn-primary" type="submit">Verify</a>
-                </div>
+                    <div class="form-group mt-3 mb-3">
+                        <label for="code" class="form-label">Verification Code</label>
+                        <input type="text" name="code" id="code" class="form-control" required>
+                        @error('Invalid')
+                            <small class="text-danger">{{$message}}</small>
+                        @enderror
+                    </div>
+                    <div class="d-grid">
+                        <button class="btn btn-primary" type="submit">Verify</button>
+                    </div>
                 </form>
             </div>
-            <p class="text-center">Did not receive code? <a href="{{route('send.verify.mail')}}">Resend</a></p>
+            <p class="text-center">Did not receive code? <a href="{{route('send.verify.mail')}}" class="text-primary">Resend</a></p>
         </div>
 		<div class="mockup right"><img src="images/star-shape.png" alt=""></div>
 	</div>

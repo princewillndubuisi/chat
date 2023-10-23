@@ -71,4 +71,23 @@ class AuthController extends Controller
         return view('authuser.chat');
     }
 
+    public function confirmpassword(Request $request) {
+        $user = User::where('email', $request->email)->first();
+
+        if ($user) {
+            // A user with the provided email was found
+            if ($request->code == $user->verification_code) {
+                $user->email_verified_at = Carbon::now();
+                $user->update();
+                // dd('Verification Successful');
+                return redirect()->route('forgot');
+            } else {
+                // dd('Invalid Code');
+                return redirect()->back()->withErrors(['Invalid' => 'Invalid code']);
+
+            }
+        }
+
+    }
+
 }
