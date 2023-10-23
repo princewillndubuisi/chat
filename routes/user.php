@@ -10,8 +10,9 @@ Route::controller(UsersController::class)->group(function () {
     Route::post('register', 'doregister')->name('doregister');
     Route::get('login', 'login')->name('login');
     Route::post('login', 'dologin')->name('dologin');
+    Route::get('password', 'password')->name('password');
+    Route::post('confirmemail', 'verifypassword')->name('confirmemail');
     Route::get('forgotpassword', 'forgot')->name('forgot');
-    Route::get('verifypassword', 'verifypassword')->name('verifypassword');
     // Route::post('forgotpassword', 'doforgot')->name('doforgot');
 });
 
@@ -22,7 +23,7 @@ Route::middleware(['auth'])->group( function () {
         Route::get('resend/verificationmail', 'resendmail')->name('send.verify.mail');
         Route::post('verificationemail', 'confirmemail')->name('email.confirm');
         Route::get('logout', 'logout')->name('logout');
-
+        Route::post('confirmpassword', 'confirmpassword')->name('confirmpassword');
     });
 
     Route::controller(AuthController::class)->middleware(['verifyemail'])->group( function () {

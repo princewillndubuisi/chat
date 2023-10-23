@@ -75,7 +75,7 @@
 		<div class="verticle-center">
 			<div class="login-form">
 				<h4><i class="icofont-key-hole"></i> Forgot Password</h4>
-				<form method="POST" action="" class="c-form">
+				<form method="" action="" class="c-form">
                     @csrf
 					<input type="password" name="password" placeholder="New Password">
 					<input type="password" name="password_confirmation" placeholder="Confirm Password">
@@ -83,7 +83,7 @@
 						<input type="checkbox" id="checkbox" checked>
 						<label for="checkbox"><span>Remember Me</span></label>
 					</div>
-					<button class="main-btn" type="submit"><i class="icofont-key"></i> Login</button>
+					<button class="main-btn" type="submit"><i class="icofont-key"></i> Confirm</button>
 				</form>
 			</div>
 		</div>

@@ -79,7 +79,7 @@
                     @csrf
 					<input type="text" name="email" placeholder="Example@">
 					<input type="password" name="password" placeholder="xxxxxxxxxx">
-                    <a href="{{route('verifypassword')}}" class="text-primary">Forgot password?</a>
+                    <a href="{{route('password')}}" class="text-primary">Forgot password?</a>
 					<div class="checkbox">
 						<input type="checkbox" id="checkbox" checked>
 						<label for="checkbox"><span>Remember Me</span></label>
