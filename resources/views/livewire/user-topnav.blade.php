@@ -4,7 +4,7 @@
     <div class="user-avatar mobile">
         <a href="profile.html" title="View Profile"><img alt="" src="images/resources/user.jpg"></a>
         <div class="name">
-            <h4>Danial Cardos</h4>
+            <h4>{{Auth::user()->firstname}}</h4>
             <span>Ontario, Canada</</span>
         </div>
     </div>
