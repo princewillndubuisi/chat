@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Users;
 
+use App\Mail\ForgotPasswordMail;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Mail\VerifyMail;
@@ -90,23 +91,12 @@ class UsersController extends Controller
         if ($user) {
             // Update the existing user's verification_code
             $user->verification_code = $code;
+            $user->update();
+            // Mail::to($user->email)->send(new ForgotPasswordMail($user->name, $user->email, $code));
+            return redirect()->route('forgot')->with('success', 'Please Check your Email');
         } else {
-            // Create a new user if they don't exist
-            $user = new User();
-            $user->email = $request->email;
-            $user->verification_code = $code;
-            return 'user not found';
+            return redirect()->back()->with('error', 'Sorry User Not Found');
         }
-
-
-        $user->save();
-
-        $name = $request->firstname . " " . $request->lastname;
-
-        // Send an email with the verification code
-        Mail::to($user->email)->send(new VerificationEmail($name, $code, $user->email));
-
-        return view('authuser.verifypassword', ['user' => $user])->with('success', 'Registration Successful, Please Login to Continue');
     }
 
     public function forgot() {
