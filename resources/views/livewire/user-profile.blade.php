@@ -1826,28 +1826,130 @@
 											</div>
 
 											<div class="dis-n-exp">
-												<h6>Discipliens</h6>
-												<span>educational leadership</span>
-												<span>educational assesment</span>
-												<span>educational management</span>
-												<span>Social Psychology</span>
-												<span>organizational Psychology</span>
-												<span>Qualitative social research</span>
-												<span>Qualitative Psychology</span>
+                                                <div class="d-flex justify-content-between mb-3">
+                                                    <div>
+                                                       <h6 class="mt-3">Discipline</h6>
+                                                    </div>
+                                                    <div>
+                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModals"><i class="bi bi-plus-square-fill"></i></button>
+                                                    </div>
+                                                </div>
+                                                <hr>
+												<span class="bg-dark text-white">organizational Psychology</span>
+												<span class="bg-dark text-white">Qualitative social research</span>
+												<span class="bg-dark text-white">Qualitative Psychology</span>
 											</div>
 											<div class="dis-n-exp">
-												<h6>Skills & Experties </h6>
-												<span>educational leadership</span>
-												<span>educational assesment</span>
-												<span>educational management</span>
-												<span>Social Psychology</span>
-												<span>organizational Psychology</span>
-												<span>Qualitative social research</span>
-												<span>Qualitative Psychology</span>
+                                                <div class="d-flex justify-content-between mb-3">
+                                                    <div>
+                                                       <h6>Skills and Expertise</h6>
+                                                    </div>
+                                                    <div>
+                                                        <a href="" class="text-primary">Edit</a>
+                                                    </div>
+                                                </div>
+                                                <hr>
+												<span class="bg-dark text-white">educational leadership</span>
+												<span class="bg-dark text-white">educational assesment</span>
+												<span class="bg-dark text-white">educational management</span>
 											</div>
-										</div>
+
+                                                <div class="dis-n-exp">
+                                                    <div class="d-flex justify-content-between mb-3">
+                                                        <div>
+                                                        <h6 class="mt-3">Hobbies</h6>
+                                                        </div>
+                                                        <div>
+                                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$hobby->id}}"><i class="bi bi-pencil-fill"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <span class="bg-dark text-white">Football</span>
+                                                    <span class="bg-dark text-white">Singing</span>
+                                                    <span class="bg-dark text-white">Coding</span>
+                                                    <span class="bg-dark text-white">{{$hobby->hobbies}}</span>
+                                                </div>
+                                            </div>
+
+                                            <!-- Modal For Hobbies -->
+                                            <div class="modal fade" id="exampleModal{{$hobby->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Edit Hobbies</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h5 class="me-5">{{Auth::user()->firstname}} {{Auth::user()->lastname}}</h5>
+                                                        <form wire:submit="save({{$hobby->id}})">
+                                                            @csrf
+                                                            <div class=" card shadow">
+                                                                <textarea name="hobbies" id="" wire:model="hobbies"  rows="3" class="w-100 "></textarea>
+                                                                @error('hobbies')
+                                                                    <small class="text-danger">{{$message}}</small>
+                                                                @enderror
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary" wire:click="save({{$hobby->id}})">Save changes</button>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Modal For Discipline -->
+                                            <div class="modal fade" id="exampleModals" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Edit Discipline</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h5 class="me-5">{{Auth::user()->firstname}} {{Auth::user()->lastname}}</h5>
+                                                        <form >
+                                                            @csrf
+                                                            <div class=" card shadow">
+                                                                <div class="card-header bg-transparent">
+                                                                    <div class="col-12 mx-auto">
+                                                                        <div class="input-group rounded mt-2 mb-2">
+                                                                            <input class="form-control border-right-0" wire:model.live.debounce.500ms="search">
+                                                                            <span class="input-group-append bg-white">
+                                                                                <button class="btn border border-left-0" type="button"><i class="bi bi-search"></i></button>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                {{-- @error('discipline')
+                                                                    <small class="text-danger">{{$message}}</small>
+                                                                @enderror --}}
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+
 										<div class="main-wraper">
-											<h3 class="main-title">Professional Experience</h3>
+                                            <div class="d-flex justify-content-between">
+                                                <div>
+                                                    <h6>Professional Experience</h6>
+                                                </div>
+                                                <div>
+                                                    <a href="" class="text-primary">Edit</a>
+                                                </div>
+                                            </div>
+                                            <hr>
 											<div class="exp-col">
 												<div class="exp-meta">
 													<h5><i class="icofont-university"></i> Oxford university</h5>
@@ -1865,15 +1967,6 @@
 													<ins>Professor Associate</ins>
 												</div>
 												<img src="images/resources/uni3.jpg" alt="">
-											</div>
-											<div class="exp-col">
-												<div class="exp-meta">
-													<h5><i class="icofont-university"></i> university of cambridge</h5>
-													<p>Sep-2012 Sep-2013</p>
-													<span>Position</span>
-													<ins>Professor Associate</ins>
-												</div>
-												<img src="images/resources/uni4.jpg" alt="">
 											</div>
 										</div>
 

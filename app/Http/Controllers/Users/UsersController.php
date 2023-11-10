@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Mail\VerificationEmail;
 use App\Http\Controllers\Controller;
+use App\Mail\ForgotPasswordMail;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -77,37 +78,49 @@ class UsersController extends Controller
     }
 
 
-    public function verifypassword( Request $request) {
+    public function confirmmail( Request $request) {
         $validated = $request->validate([
-            'email' => 'required|email'
+            'email' => 'required|email|exists:users,email'
         ]);
 
+        // dd($request->email);
         $code = Str::random(6);
 
         // Check if a user with the given email already exists
         $user = User::where('email', $request->email)->first();
 
+        // dd($user);
         if ($user) {
             // Update the existing user's verification_code
             $user->verification_code = $code;
+            $user->update();
+            Mail::to($user->email)->send(new ForgotPasswordMail($user->name, $code, $request->email));
+            return redirect()->route('verifypassword')->with('success', 'Please Check Your Email');
         } else {
+            return redirect()->back()->with('error', 'Sorry User Not Found');
             // Create a new user if they don't exist
-            $user = new User();
-            $user->email = $request->email;
-            $user->verification_code = $code;
-            return 'user not found';
+            // $user = new User();
+            // $user->email = $request->email;
+            // $user->verification_code = $code;
+            // return 'user not found';
         }
 
-
-        $user->save();
-
-        $name = $request->firstname . " " . $request->lastname;
-
-        // Send an email with the verification code
-        Mail::to($user->email)->send(new VerificationEmail($name, $code, $user->email));
-
-        return view('authuser.verifypassword', ['user' => $user])->with('success', 'Registration Successful, Please Login to Continue');
     }
+
+    public function verifypasswordmail(Request $request) {
+        // Retrieve the user based on the email
+        $user = User::where('email', $request->email)->first();
+
+        if ($user) {
+            // User with the provided email exists, so you can pass it to the view
+            return view('authuser.verifypassword')->with('user', $user);
+        } else {
+            // User with the provided email does not exist, handle this case (e.g., show an error message)
+            return redirect()->back()->with('error', 'User not found');
+        }
+    }
+
+
 
     public function forgot() {
         return view('authuser.forgotpassword');

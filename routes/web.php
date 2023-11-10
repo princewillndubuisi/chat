@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 require __DIR__ . '/user.php';
 
 Route::get('/', function () {
-    return view('authuser.register');
+    return view('authuser.login');
 });
 
 Route::middleware([

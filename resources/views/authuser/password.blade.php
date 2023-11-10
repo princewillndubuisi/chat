@@ -79,7 +79,9 @@
                     @csrf
                     <label for="">Confirm Email</label>
 					<input type="email" name="email" placeholder="Example@">
-
+                    @error('email')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
 					<button class="btn btn-primary d-flex justify-content-center mt-3" type="submit"><i class="icofont-key"></i> Verify</button>
 				</form>
 			</div>

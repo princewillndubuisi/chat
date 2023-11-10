@@ -79,13 +79,16 @@
                     @csrf
 					<input type="text" name="email" placeholder="Example@">
 					<input type="password" name="password" placeholder="xxxxxxxxxx">
-                    <a href="{{route('password')}}" class="text-primary">Forgot password?</a>
 					<div class="checkbox">
 						<input type="checkbox" id="checkbox" checked>
 						<label for="checkbox"><span>Remember Me</span></label>
 					</div>
-					<button class="main-btn" type="submit"><i class="icofont-key"></i> Login</button>
+					<button class="main-btn w-100 mb-2" type="submit"><i class="icofont-key"></i> Login</button>
 				</form>
+                <a href="{{route('password')}}" class="text-primary">Forgot password?</a>
+                <div class="mt-4 text-center">
+                    <a href="{{route('register')}}" class="btn btn-danger p-2">Create a new account</a>
+                </div>
 			</div>
 		</div>
 		<div class="mockup right"><img src="images/star-shape.png" alt=""></div>
